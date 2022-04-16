@@ -112,45 +112,108 @@ fun CreateBizCard() {
 
                     CreateImageProfile()
                     Divider()
+                    Presentation()
+                    Skills()
+                }
+            }
+        }
+    }
+}
 
-                    Column(modifier = Modifier.padding(5.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(text = "Yanet Rodriguez",
-                            style = MaterialTheme.typography.h4,
-                            color = MaterialTheme.colors.primaryVariant)
+@Composable
+private fun Skills() {
+    Button(onClick = {/*TODO*/ }) {
 
-                        Spacer(modifier = Modifier.height(8.dp))
+    }
+}
 
-                        Text(text = "Mobile developer",
-                            style = MaterialTheme.typography.body1,
-                            color = MaterialTheme.colors.secondary)
+@Composable
+private fun Presentation() {
+    Column(modifier = Modifier.padding(5.dp),
+        horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(text = "Yanet Rodriguez",
+            style = MaterialTheme.typography.h4,
+            color = colorResource(id = R.color.black))
 
-                        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
-                        Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-                            Box() {
-                                Image(painter = painterResource(id = R.drawable.linkedin),
-                                    contentDescription = "LinkedIn",
-                                    modifier = Modifier.size(40.dp))
-                            }
+        Text(text = "Mobile developer.",
+            style = MaterialTheme.typography.subtitle1,
+            color = colorResource(id = R.color.black))
 
-                            Spacer(modifier = Modifier.width(20.dp))
+        Spacer(modifier = Modifier.height(30.dp))
 
-                            Box() {
-                                Image(painter = painterResource(id = R.drawable.github),
-                                    contentDescription = "Github",
-                                    modifier = Modifier.size(40.dp))
-                            }
+        Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+            Box() {
+                IconButton(onClick = {
 
-                            Spacer(modifier = Modifier.width(20.dp))
+                }) {
+                    Image(painter = painterResource(id = R.drawable.linkedin),
+                        contentDescription = "LinkedIn",
+                        modifier = Modifier.size(45.dp))
+                }
+            }
 
-                            Box() {
-                                Image(painter = painterResource(id = R.drawable.twitter),
-                                    contentDescription = "Twitter",
-                                    modifier = Modifier.size(40.dp))
-                            }
-                        }
-                    }
+            Spacer(modifier = Modifier.width(20.dp))
+
+            Box() {
+                IconButton(onClick = {
+
+                }) {
+                    Image(painter = painterResource(id = R.drawable.github),
+                        contentDescription = "GitHub",
+                        modifier = Modifier.size(45.dp))
+                }
+            }
+
+            Spacer(modifier = Modifier.width(20.dp))
+
+            Box() {
+                IconButton(onClick = {
+
+                }) {
+                    Image(painter = painterResource(id = R.drawable.twitter),
+                        contentDescription = "Twitter",
+                        modifier = Modifier.size(45.dp))
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+            Box() {
+                IconButton(onClick = {
+
+                }) {
+                    Image(painter = painterResource(id = R.drawable.discord),
+                        contentDescription = "Discord",
+                        modifier = Modifier.size(45.dp))
+                }
+            }
+
+            Spacer(modifier = Modifier.width(20.dp))
+
+            Box() {
+                IconButton(onClick = {
+
+                }) {
+                    Image(painter = painterResource(id = R.drawable.outlook),
+                        contentDescription = "Outlook",
+                        modifier = Modifier.size(45.dp))
+                }
+            }
+
+            Spacer(modifier = Modifier.width(20.dp))
+
+            Box() {
+                IconButton(onClick = {
+
+                }) {
+                    Image(
+                        painter = painterResource(id = R.drawable.gmail),
+                        contentDescription = "Gmail",
+                        modifier = Modifier.size(45.dp))
                 }
             }
         }
