@@ -6,20 +6,22 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,10 +38,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyPresentationTheme {
-                Surface(modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background) {
-                    Navigation()
-                }
+                Navigation()
             }
         }
     }
@@ -54,39 +53,7 @@ fun Navigation() {
             SplashScreen(navController = navController)
         }
         composable("main_screen") {
-            MainSreen()
-        }
-    }
-}
-
-@Preview
-@Composable
-fun MainSreen() {
-    LazyColumn(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-
-        Box(contentAlignment = Alignment.TopCenter,
-            modifier = Modifier.fillMaxSize().padding(top = 8.dp)) {
-            Image(painter = painterResource(id = R.drawable.banner),
-                contentDescription = "Banner",
-                modifier = Modifier.fillMaxSize())
-        }
-
-        Text("I'm Yanet DevMobile")
-
-        Box(contentAlignment = Alignment.TopCenter,
-            modifier = Modifier.fillMaxSize().padding(top = 8.dp)) {
-            Image(painter = painterResource(id = R.drawable.perfil),
-                contentDescription = "Splash",
-                modifier = Modifier.width(100.dp).height(100.dp))
-        }
-
-        Column {
-            Box(contentAlignment = Alignment.TopCenter,
-                modifier = Modifier.fillMaxSize().padding(top = 8.dp)) {
-                Image(painter = painterResource(id = R.drawable.linkedin),
-                    contentDescription = "Splash",
-                    modifier = Modifier.width(10.dp).height(10.dp))
-            }
+            CreateBizCard()
         }
     }
 }
@@ -111,7 +78,6 @@ fun SplashScreen(navController: NavController) {
         navController.navigate("main_screen")
     }
 
-    // Image
     Box(contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize().background(
             colorResource(id = R.color.lightBlue)
@@ -119,5 +85,97 @@ fun SplashScreen(navController: NavController) {
         Image(painter = painterResource(id = R.drawable.banner),
             contentDescription = "Splash",
             modifier = Modifier.scale(scale.value).width(900.dp).height(900.dp))
+    }
+}
+
+@Preview
+@Composable
+fun CreateBizCard() {
+    Surface(modifier = Modifier
+        .fillMaxWidth()
+        .fillMaxHeight()) {
+
+        Card(modifier = Modifier.fillMaxHeight().fillMaxWidth(),
+            backgroundColor = colorResource(id = R.color.lightBlue)) {
+
+            Card(modifier = Modifier.width(200.dp)
+                .height(390.dp)
+                .padding(16.dp),
+                shape = RoundedCornerShape(corner = CornerSize(15.dp)),
+                backgroundColor = colorResource(id = R.color.gray),
+                elevation = 4.dp) {
+
+                Column(modifier = Modifier.height(300.dp)
+                    .padding(5.dp),
+                    verticalArrangement = Arrangement.Top,
+                    horizontalAlignment = Alignment.CenterHorizontally) {
+
+                    CreateImageProfile()
+                    Divider()
+
+                    Column(modifier = Modifier.padding(5.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(text = "Yanet Rodriguez",
+                            style = MaterialTheme.typography.h4,
+                            color = MaterialTheme.colors.primaryVariant)
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        Text(text = "Mobile developer",
+                            style = MaterialTheme.typography.body1,
+                            color = MaterialTheme.colors.secondary)
+
+                        Spacer(modifier = Modifier.height(15.dp))
+
+                        Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+                            Box() {
+                                Image(painter = painterResource(id = R.drawable.linkedin),
+                                    contentDescription = "LinkedIn",
+                                    modifier = Modifier.size(40.dp))
+                            }
+
+                            Spacer(modifier = Modifier.width(20.dp))
+
+                            Box() {
+                                Image(painter = painterResource(id = R.drawable.github),
+                                    contentDescription = "Github",
+                                    modifier = Modifier.size(40.dp))
+                            }
+
+                            Spacer(modifier = Modifier.width(20.dp))
+
+                            Box() {
+                                Image(painter = painterResource(id = R.drawable.twitter),
+                                    contentDescription = "Twitter",
+                                    modifier = Modifier.size(40.dp))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun Divider() {
+    Divider(thickness = 5.dp,
+        modifier = Modifier.padding(5.dp)
+            .background(colorResource(id = R.color.lightBlue)))
+}
+
+@Composable
+private fun CreateImageProfile() {
+    Surface(modifier = Modifier.size(150.dp)
+        .padding(5.dp),
+        shape = CircleShape,
+        border = BorderStroke(0.5.dp, Color.LightGray),
+        elevation = 4.dp,
+        color = MaterialTheme.colors.onSurface.copy(alpha = 0.5f)) {
+
+        Image(painter = painterResource(id = R.drawable.profile),
+            contentDescription = "profile_picture",
+            modifier = Modifier.size(135.dp),
+            contentScale = ContentScale.Crop)
     }
 }
